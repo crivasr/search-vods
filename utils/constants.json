@@ -1,0 +1,11 @@
+{
+    "vod": {
+        "operation": "FilterableVideoTower_Videos",
+        "hash": "a937f1d22e269e39a03b509f65a7490f9fc247d7f83d6ac1421523e3b68042cb"
+    },
+    "moment": {
+        "operation": "VideoPreviewCard__VideoMoments",
+        "hash": "0094e99aab3438c7a220c0b1897d144be01954f8b4765b884d330d0c0893dbde"
+    },
+    "gqlAPI": "https://gql.twitch.tv/gql"
+}
