@@ -1,8 +1,7 @@
 const fetch = require("node-fetch");
-const getVods = require("./getVods");
-const { moment: momentConst, gqlAPI } = require("./constants.json");
+const { Moment, gqlAPI } = require("./constants");
 
-async function getVodsMoments(token, vods) {
+async function getVodsMoments(client_id, vods) {
     const moments = [];
     const fragments = [[]];
 
@@ -26,14 +25,14 @@ async function getVodsMoments(token, vods) {
 
         fragment.forEach((id) => {
             const body = {
-                operationName: momentConst.operation,
+                operationName: Moment.operationName,
                 variables: {
                     videoId: id,
                 },
                 extensions: {
                     persistedQuery: {
                         version: 1,
-                        sha256Hash: momentConst.hash,
+                        sha256Hash: Moment.hash,
                     },
                 },
             };
@@ -43,7 +42,7 @@ async function getVodsMoments(token, vods) {
 
         const options = {
             method: "POST",
-            headers: { Authorization: `OAuth ${token}` },
+            headers: { "Client-Id": client_id },
             body: JSON.stringify(operations),
         };
 

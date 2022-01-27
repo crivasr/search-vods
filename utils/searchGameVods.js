@@ -2,11 +2,11 @@ const getVodsMoments = require("./getVodsMoments");
 const secondsToHms = require("./secondsToHms");
 const getVods = require("./getVods");
 
-async function searchGameVods(channel, token, game) {
+async function searchGameVods(channel, client_id, game) {
     const response = [];
 
-    const vods = await getVods(channel, token);
-    const moments = await getVodsMoments(token, vods);
+    const vods = await getVods(channel, client_id);
+    const moments = await getVodsMoments(client_id, vods);
 
     vods.forEach((vod) => {
         // si nunca se cambio la categoria del stream, no aparece ningun momento

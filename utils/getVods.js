@@ -1,14 +1,14 @@
 const fetch = require("node-fetch");
-const { vod: vodConst, gqlAPI } = require("./constants.json");
+const { Vod, gqlAPI } = require("./constants");
 
-async function getVods(channel, token) {
+async function getVods(channel, client_id) {
     const vods = [];
     let cursor = undefined;
 
     while (cursor !== null) {
         const body = [
             {
-                operationName: vodConst.operation,
+                operationName: Vod.operationName,
                 variables: {
                     limit: 100,
                     channelOwnerLogin: channel,
@@ -19,7 +19,7 @@ async function getVods(channel, token) {
                 extensions: {
                     persistedQuery: {
                         version: 1,
-                        sha256Hash: vodConst.hash,
+                        sha256Hash: Vod.hash,
                     },
                 },
             },
@@ -27,7 +27,7 @@ async function getVods(channel, token) {
 
         const options = {
             method: "POST",
-            headers: { Authorization: `OAuth ${token}` },
+            headers: { "Client-Id": client_id },
             body: JSON.stringify(body),
         };
 
